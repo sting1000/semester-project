@@ -181,12 +181,22 @@ cleaning = cleaning[cleaning.value.map(lambda x: len(x) > 2)]
 cleaning['author_order'] = cleaning.variable.map(lambda x: 0 if len(re.search('\d*$', x).group(0)) == 0 else int(re.search('\d*$', x).group(0)))
 del cleaning['variable']
 
+
+get_names = r'([\w\-\&]*[\,] [\p{L}\.\ ]+[\&\,]?)'
+section_before_year = r'[\S\s]*\(\d{4}\)'
+
 cleaning.reset_index(drop=True, inplace=True)
-cleaning['shortend_names'] = cleaning.citation.map(lambda x: re.match(r'[\S\s]*\(\d{4}\)', x, re.U).group(0)).map(lambda x: extract_author(x))
+cleaning['shortend_names'] = cleaning.citation.map(lambda x: re.match(section_before_year, x, re.U).group(0)).map(lambda x: [x.replace(',', '').replace('&', '').rstrip() for x in regex.findall(get_names, x)])
 cleaning['shortend_names'] = cleaning.apply(lambda x: x['shortend_names'][x['author_order']], axis=1)
+
+
+# cleaning.reset_index(drop=True, inplace=True)
+# cleaning['shortend_names'] = cleaning.citation.map(lambda x: re.match(r'[\S\s]*\(\d{4}\)', x, re.U).group(0)).map(lambda x: extract_author(x))
+# cleaning['shortend_names'] = cleaning.apply(lambda x: x['shortend_names'][x['author_order']], axis=1)
 cleaning.rename(columns={'index': 'file', 'value':'long_name'}, inplace=True)
 
-cleaning['file'] = cleaning.file.map(lambda x: x.replace('/', '_')[:-len('/dublin_core')])
+
+cleaning['file'] = cleaning.file.map(lambda x: x.replace('/', '_')[:-len('/dublin_core')]) #!!!!!!!!
 cleaning['identifier'] = cleaning.citation.map(lambda x: author_title(x))
 
 names = cleaning.long_name.unique()

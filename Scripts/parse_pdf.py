@@ -15,12 +15,14 @@ TOTEXT = 'pdftotext '
 PARAMS = ' -nopgbrk -eol mac'
 
 j = 0
+
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
+        print(file)
         path = os.path.join(subdir, file)+' '
         path_out = os.path.join(output, subdir[len(rootdir):].replace('/', '_')+file[file.find('/'):-len('.pdf')]+'.txt')
         if '.pdf' in path:
             j += 1
-            os.system(TOTEXT + path + path_out + PARAMS)
+            os.system(TOTEXT  +path + path_out + PARAMS)
             sys.stdout.write("\r[Info] Parsed {} documents, parsing document {}".format(j, path))
             sys.stdout.flush()
