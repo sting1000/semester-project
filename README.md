@@ -16,6 +16,25 @@ The analysis of the data itself is split into the different notebooks as to avoi
 - Data exploration - Universities & Countries .ipynb : looks at the where participants are from and how countries and institutions collaborate.
 - Papers - Metadata Analysis.ipynb : look at the metadata which was collected seperatly from the other data which was extracted from the pdf papers. Discusses some issues with the data and looks at participation.
 
+### Input Data Format:
+
+paper-import.
+|
+|       |-21.  |-21.pdf
+|-2014--|-22---|-content
+|       |-23.  |-dublin_core.xml
+|-2015
+|
+.....
+
+
+1. All the data should be in the folder named 'paper-import'
+2. In 'paper_import', the folders are named by year like 2014, 2015 etc.
+3. In folder of each year, there are numbers of folders named by unique index number
+4. The index folder contains three files: index_number.pdf, content, dublin_core.xml
+
+
+
 ### Rerunning the parsing:
 Rerunning the parsing is not necessary unless additional data becomes available. All the data is contained in the `data` folder. Where possible in `csv` format. The data associated to universities is saved in `pickle` format to keep the emails associated to participants hidden from malicious robots.
 
