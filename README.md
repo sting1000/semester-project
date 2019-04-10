@@ -30,8 +30,8 @@ paper-import.
 
 1. All the data should be in the folder named 'paper-import'
 2. In 'paper_import', the folders are named by year like 2014, 2015 etc.
-3. In folder of each year, there are numbers of folders named by unique index number
-4. The index folder contains three files: index_number.pdf, content, dublin_core.xml
+3. In the folder of each year, there are numbers of folders named by unique index number and their name should not include '_' to ensure program running
+4. The index folder contains three files: $index_number.pdf, content, dublin_core.xml
 
 
 
@@ -43,7 +43,7 @@ To rerun the parsing:
 2. to get all the dependencied, create an environment using 
 ```conda env create -f environment.yml```  and activate the environment using: 
 ```source activate Biblio``` 
-3. run ```bash init```
+3. run ```bash init``` (Please make sure there is a 'papers' folder in ./data directory)
 4. rerun Parsing University and Country.ipynb (takes a long time and should be inspected) this can be done from the comand line using ```jupyter nbconvert --execute Parsing\ University\ and\ Country.ipynb```. Should not be rerun often to avoid unnecessary API calls. This is the only part of parsing which requires a working connection to the internet to execute.
 
 ### Rerunning the notebooks:
