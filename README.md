@@ -1,6 +1,11 @@
 # Semester Project Fall 2018 
 
+All results are shown in [My report](https://github.com/sting1000/semester-project/blob/master/Semester_Project_ZhechenSu.pdf)
+
+
+
 ### About
+
 The repository holds a variety of notebooks which contain a bibliographic analysis of the Papers in the Proceedings of ICLS and CLCS from 2015 to 2018.
 
 The code used to parse and augment the data is eplained in the notebooks contained in the `Parsing Explained` folder. 
